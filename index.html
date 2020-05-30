@@ -11,10 +11,10 @@
             <div id='display'>
             </div>
             <div id='button-container'>
-                <button id='plus' class='operator button'>+</button>
-                <button id='minus' class='operator button'>-</button>
-                <button id='divide' class='operator button'>/</button>
-                <button id='multiple' class='operator button'>x</button>
+                <button id='plus' class='operator button' data-action='add'>+</button>
+                <button id='minus' class='operator button' data-action='subtract'>-</button>
+                <button id='divide' class='operator button' data-action='divide'>/</button>
+                <button id='multiple' class='operator button' data-action='multiply'>x</button>
                 <button id='seven' class='number button'>7</button>
                 <button id='eight' class='number button'>8</button>
                 <button id='nine' class='number button'>9</button>
@@ -25,9 +25,9 @@
                 <button id='two' class='number button'>2</button>
                 <button id='three' class='number button'>3</button>
                 <button id='zero' class='number button'>0</button>
-                <button id='period' class='number button'>.</button>
-                <button id='clear' class='number button'>C</button>
-                <button id='equal' class='equal button'>=</button>
+                <button id='period' class='number button' data-action='decimal'>.</button>
+                <button id='clear' class='number button' data-action='clear'>C</button>
+                <button id='equal' class='equal button' data-action='calculate'>=</button>
             </div>
         </div>
     </div>
