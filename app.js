@@ -33,10 +33,17 @@ keys.addEventListener('click', e => {
             } else {
                 display.textContent = displayedNum + keyContent;
             }
+            calculator.dataset.previousKey = 'number';
         }
 
         if (action === 'decimal') {
-            display.textContent = displayedNum + '.';
+            if (!displayedNum.includes('.')) {
+                display.textContent = displayedNum + '.';
+            } else if (previousKeyType === 'operator') {
+                display.textContent = '0';
+            }
+
+            calculator.dataset.previousKey = 'decimal';
         }
 
         if (
@@ -45,9 +52,23 @@ keys.addEventListener('click', e => {
             action === 'divide' ||
             action === 'multiply'
         ) {
+            const firstValue = calculator.dataset.firstValue;
+            const operator = calculator.dataset.operator;
+            const secondValue = displayNum;
+
+            if (firstValue && operator) {
+                display.textContent = calculate(firstValue, operator, secondValue);
+            }
+        }
+
+        key.classList.add('is-depressed') {
             calculator.dataset.previousKeyType = 'operator';
             calculator.dataset.firstValue = displayedNum;
             calculator.dataset.operator = action;
+        }
+
+        if (action === 'clear') {
+            calculator.dataset.previousKeyType = 'clear';
         }
 
         if (action === 'calculate') {
@@ -55,6 +76,19 @@ keys.addEventListener('click', e => {
             const operator = calculator.dataset.operator;
             const secondValue = displayedNum;
 
+            calculator.dataset.previousKeyType = 'calculate';
+            display.textContent = calculate(firstValue, operator, secondValue);
+        }
+
+        if (!displayedNum.includes('.')) {
+            display.textContent = displayedNum + '.';
+        }
+
+        if (
+            firstValue &&
+            operator &&
+            previousKeyType !== 'operator'
+        ) {
             display.textContent = calculate(firstValue, operator, secondValue);
         }
     }
